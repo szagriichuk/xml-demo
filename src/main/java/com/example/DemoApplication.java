@@ -24,16 +24,12 @@ public class DemoApplication {
             employee.setId(random.nextInt());
             employee.setFirstName(random.nextInt() + "Name");
             employeeList.add(employee);
+            if (i % 100 == 0) {
+                Employees employees = new Employees();
+                employees.setEmployees(employeeList);
+                log.info(asString(jaxbContext, employees));
+            }
         }
-        Employees employees = new Employees();
-        employees.setEmployees(employeeList);
-
-        String s = asString(jaxbContext, employees);
-        String[] strings = s.split("(?<=</employee>)");
-        for (String string : strings) {
-            log.info(string);
-        }
-
     }
 
     private static String asString(JAXBContext pContext,
